@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Miehenä-podcast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Miehenä-podcastissa puhutaan miehisyydestä niin kuin ihmisyydestä pitäisi – haavoittuvasti, rehellisesti ja nauraen itsellemme."
+  />
+  <style>
+    :root {
+      --bg-dark: #05291f;
+      --bg-darker: #021710;
+      --accent-pink: #f7a4c1;
+      --accent-pink-soft: #ffe3ee;
+      --text-light: #f8f8f8;
+      --text-muted: #c0d2cc;
+      --card-bg: #073329;
+      --border-soft: #0b4535;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #0b4132, #01110c 45%, #000);
+      color: var(--text-light);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    header {
+      padding-top: 1rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ffe3ee, #f7a4c1 45%, #8b3254);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a1a1a;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(247, 164, 193, 0.08);
+      color: var(--accent-pink-soft);
+    }
+
+    /* Hero */
+
+    .hero {
+      margin-top: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 3fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(247, 164, 193, 0.45);
+      background: rgba(3, 25, 19, 0.9);
+      font-size: 0.75rem;
+      color: var(--accent-pink-soft);
+      margin-bottom: 0.9rem;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-pink);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4.2vw, 3.1rem);
+      line-height: 1.05;
+      margin: 0 0 0.75rem;
+    }
+
+    .hero-title span {
+      color: var(--accent-pink);
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.7rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .hero-bullets li {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-bullets span {
+      font-size: 1rem;
+      color: var(--accent-pink);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      margin-bottom: 1.3rem;
+    }
+
+    .btn-primary {
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      background: var(--accent-pink);
+      color: #18181b;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
+      background: #ffb4cf;
+    }
+
+    .btn-secondary {
+      padding: 0.7rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(247, 164, 193, 0.5);
+      background: transparent;
+      color: var(--accent-pink-soft);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(10, 39, 31, 0.9);
+      border-color: var(--accent-pink);
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #0e4333, #02130d);
+      border-radius: var(--radius-xl);
+      padding: 1.2rem 1.2rem 1.3rem;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(247, 164, 193, 0.23), transparent 55%),
+        radial-gradient(circle at 90% 80%, rgba(247, 164, 193, 0.15), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-pink-soft);
+      margin-bottom: 0.45rem;
+    }
+
+    .hero-card-title {
+      font-size: 1.1rem;
+      margin: 0 0 0.4rem;
+      font-weight: 600;
+    }
+
+    .hero-card-text {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-hosts {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      margin-top: 0.6rem;
+    }
+
+    .host-badge {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+    }
+
+    .host-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .host-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .host-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+    }
+
+    .chip {
+      padding: 0.12rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.1);
+      background: rgba(2, 19, 13, 0.6);
+    }
+
+    /* Sections */
+
+    section {
+      margin-bottom: 2.7rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-title span {
+      color: var(--accent-pink);
+    }
+
+    .section-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 38rem;
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 3fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .about-pill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .about-pill {
+      background: rgba(3, 22, 16, 0.95);
+      border-radius: 999px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.82rem;
+      border: 1px solid rgba(247, 164, 193, 0.25);
+      color: var(--accent-pink-soft);
+    }
+
+    .mini-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--border-soft);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .mini-card strong {
+      color: var(--text-light);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .mini-card + .mini-card {
+      margin-top: 0.6rem;
+    }
+
+    /* Listen section */
+
+    .listen-platforms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .platform-card {
+      background: rgba(3, 22, 16, 0.95);
+      border-radius: var(--radius-lg);
+      padding: 0.9rem 0.9rem;
+      border: 1px solid var(--border-soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.35rem;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        border-color 0.12s ease, background 0.12s ease;
+    }
+
+    .platform-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+      border-color: rgba(247, 164, 193, 0.6);
+      background: rgba(7, 51, 41, 0.96);
+    }
+
+    .platform-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .platform-tag {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .platform-link {
+      font-size: 0.78rem;
+      margin-top: 0.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--accent-pink-soft);
+    }
+
+    /* Video */
+
+    .video-frame {
+      margin-top: 1rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      background: #000;
+      position: relative;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-badge {
+      position: absolute;
+      left: 0.9rem;
+      top: 0.9rem;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.65);
+      color: var(--accent-pink-soft);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid rgba(12, 52, 38, 0.9);
+      margin-top: auto;
+      background: var(--bg-darker);
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.4rem 1.25rem 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-right a {
+      color: var(--accent-pink-soft);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 820px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .container {
+        padding-inline: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <header>
+        <nav class="nav">
+          <div class="logo-wrap">
+            <div class="logo-mark">M</div>
+            <div>
+              <div class="logo-text-main">Miehenä-podcast</div>
+              <div class="logo-text-sub">Tutkimusta, tarinoita &amp; toivoa miehille</div>
+            </div>
+          </div>
+          <div class="nav-links">
+            <a href="#about">Mistä on kyse?</a>
+            <a href="#listen">Kuuntele</a>
+            <a href="#video">Esittelyvideo</a>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <!-- Hero -->
+        <section class="hero">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                Uusi podcast miehisyydestä – ilman sankarimyyttejä
+              </div>
+              <h1 class="hero-title">
+                Miehenä-podcast: <span>haavoittuvaa</span> puhetta miehisyydestä.
+              </h1>
+              <p class="hero-lead">
+                Miehenä-podcastissa puhutaan miehisyydestä niin kuin ihmisyydestä
+                pitäisi – haavoittuvasti, rehellisesti ja nauraen itsellemme.
+                Juho ja Joel yhdistävät tutkimustiedon, tunnekokemukset ja
+                toivon paremmasta mieskulttuurista.
+              </p>
+              <ul class="hero-bullets">
+                <li><span>•</span> Vapautetaan miehet ahtaista rooleista</li>
+                <li><span>•</span> Autetaan sanoittamaan tunteita, rajoja ja toiveita</li>
+                <li><span>•</span> Korvataan uskomukset ja pelko uteliaisuudella ja dialogilla</li>
+              </ul>
+              <div class="hero-cta">
+                <a href="#listen" class="btn-primary">
+                  Kuuntele ensimmäinen jakso
+                  <span>▶</span>
+                </a>
+                <a href="#video" class="btn-secondary">
+                  Katso lyhyt esittely
+                  <span>⟶</span>
+                </a>
+              </div>
+              <div class="hero-note">
+                Ei miesten paremmuutta – vaan parempaa ihmisyyttä, jossa
+                yhdenvertaisuus hyödyttää meitä kaikkia.
+              </div>
+            </div>
+
+            <aside class="hero-card" aria-label="Podcast-kortti">
+              <div class="hero-card-inner">
+                <div class="hero-card-tag">Podcast</div>
+                <h2 class="hero-card-title">”Mitä jos miesten keskustelu näyttäisi tältä?”</h2>
+                <p class="hero-card-text">
+                  Kaksi miestä mikin ääressä, mutta ilman pätemistä, päälle puhumista
+                  tai kaiken tietämistä. Tilalla:
+                  hiljaisia ajatuksia, vaikeita tunteita, kiusallisia tarinoita –
+                  ja aika paljon naurua.
+                </p>
+                <div class="hero-hosts">
+                  <div class="host-badge">
+                    <div class="host-name">Juho &amp; Joel</div>
+                    <div class="host-role">juontajat</div>
+                    <div class="host-chips">
+                      <span class="chip">tutkimus</span>
+                      <span class="chip">tarinat</span>
+                      <span class="chip">toivo</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- About -->
+        <section id="about">
+          <div class="about-grid">
+            <div>
+              <h2 class="section-title">
+                Mistä <span>Miehenä-podcastissa</span> on kyse?
+              </h2>
+              <p class="section-text">
+                Meitä kiinnostaa, mitä mieheys voisi olla ilman ahdistavia roolimalleja
+                ja ”pärjää itse” -tarinaa. Siksi puhumme:
+              </p>
+              <ul class="about-pill-list">
+                <li class="about-pill">tunteista ja häpeästä</li>
+                <li class="about-pill">ihmissuhteista ja läheisyydestä</li>
+                <li class="about-pill">työstä, vallasta ja vastuusta</li>
+                <li class="about-pill">kaveruudesta ja yksinäisyydestä</li>
+                <li class="about-pill">kehollisuudesta &amp; seksuaalisuudesta</li>
+                <li class="about-pill">mieskulttuurin muuttamisesta sisältä päin</li>
+              </ul>
+            </div>
+            <div>
+              <div class="mini-card">
+                <strong>1. Vapautetaan miehet ahtaista rooleista</strong>
+                Näytetään, että miehet voivat puhua toisilleen myös lempeästi ja
+                haavoittuvaisesti – ilman, että keneltäkään viedään mitään pois.
+              </div>
+              <div class="mini-card">
+                <strong>2. Autetaan miehiä tuntemaan ja ilmaisemaan itseään</strong>
+                Sanoitetaan tunteita, rajoja ja toiveita niin, että niitä on
+                helpompi harjoitella myös omassa elämässä.
+              </div>
+              <div class="mini-card">
+                <strong>3. Tuodaan tutkimus osaksi mieskeskustelua</strong>
+                Korvataan uskomuksia ja pelkoa ymmärryksellä, uteliaisuudella ja
+                dialogilla – ilman monimutkaista jargonia.
+              </div>
+              <div class="mini-card">
+                <strong>4. Yhdenvertaisuus hyödyttää kaikkia</strong>
+                Emme puhu nollasummapelistä, vaan siitä, miten parempi
+                yhdenvertaisuus voi vapauttaa myös miehiä elämään täysillä.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Listen -->
+        <section id="listen">
+          <h2 class="section-title">
+            Kuuntele <span>Miehenä-podcastia</span>
+          </h2>
+          <p class="section-text">
+            Podcast julkaistaan kaikissa yleisimmissä alustoissa. Alla
+            paikat, joista löydät jaksot heti kun starttaamme. Tässä vaiheessa
+            linkit ovat vielä <strong>placeholder</strong>-linkkejä.
+          </p>
+          <div class="listen-platforms">
+            <a href="#" class="platform-card">
+              <div>
+                <div class="platform-name">Spotify</div>
+                <div class="platform-tag">Avaa Miehenä-podcast Spotifyssa</div>
+              </div>
+              <div class="platform-link">
+                Avaa placeholder-linkki
+                <span>↗</span>
+              </div>
+            </a>
+            <a href="#" class="platform-card">
+              <div>
+                <div class="platform-name">Apple Podcasts</div>
+                <div class="platform-tag">Kuuntele iPhonella ja Macilla</div>
+              </div>
+              <div class="platform-link">
+                Avaa placeholder-linkki
+                <span>↗</span>
+              </div>
+            </a>
+            <a href="#" class="platform-card">
+              <div>
+                <div class="platform-name">Google Podcasts / YouTube Music</div>
+                <div class="platform-tag">Android ja Google-käyttäjille</div>
+              </div>
+              <div class="platform-link">
+                Avaa placeholder-linkki
+                <span>↗</span>
+              </div>
+            </a>
+            <a href="#" class="platform-card">
+              <div>
+                <div class="platform-name">RSS-syöte</div>
+                <div class="platform-tag">Tilaa omalla podcast-sovelluksellasi</div>
+              </div>
+              <div class="platform-link">
+                Avaa placeholder-linkki
+                <span>↗</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Video -->
+        <section id="video">
+          <h2 class="section-title">
+            Katso <span>esittelyvideo</span>
+          </h2>
+          <p class="section-text">
+            Tähän upotetaan myöhemmin lyhyt YouTube-video, jossa Juho ja Joel
+            esittäytyvät ja kertovat, miksi Miehenä-podcast syntyi. Toistaiseksi
+            alla on placeholder-video.
+          </p>
+
+          <div class="video-frame">
+            <div class="video-badge">Esittelyvideo (placeholder)</div>
+            <div class="video-wrapper">
+              <!-- VAIHDA "VIDEO_ID" oikeaan YouTube-videon ID:hen -->
+              <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID"
+                title="Miehenä-podcast esittelyvideo (placeholder)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <div>© <span id="year"></span> Miehenä-podcast – Juho &amp; Joel</div>
+        <div class="footer-right">
+          <span>Ota yhteyttä: <a href="mailto:info@example.com">info@example.com</a></span>
+          <span>|</span>
+          <a href="#top">Takaisin ylös</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Päivitä vuosiluku automaattisesti
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

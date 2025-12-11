@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miehenä-podcast | Juho & Joel</title>
+    <style>
+        /* --- PERUSASETUKSET & VÄRIT --- */
+        :root {
+            --bg-dark-green: #0b3d2e;      /* Tumma metsänvihreä */
+            --bg-card-green: #14523d;      /* Hieman vaaleampi vihreä laatikoihin */
+            --text-main: #f3fcf8;          /* Murrettu valkoinen teksteihin */
+            --accent-pink: #ffc2d1;        /* Vaaleanpunainen korostuksiin */
+            --accent-pink-hover: #ff9eb5;  /* Tummempi pinkki hover-efektiin */
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark-green);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-pink);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        /* --- LEISKAASETUKSET (LAYOUT) --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid rgba(255, 194, 209, 0.2);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        header p.tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* --- OSIOT --- */
+        section {
+            padding: 50px 0;
+        }
+
+        /* Esittely-osio */
+        .intro-text {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Tavoitteet (Grid) */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .goal-card {
+            background-color: var(--bg-card-green);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-pink);
+        }
+
+        .goal-card h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Video-placeholder */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 kuvasuhde */
+            height: 0;
+            background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+        }
+
+        /* Kuuntelu-linkit (CTA) */
+        .listen-links {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-pink);
+            color: var(--bg-dark-green);
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-pink-hover);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 194, 209, 0.2);
+        }
+
+        /* Mobiiliresponsiivisuus */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.5rem; }
+            .btn { display: block; margin: 10px auto; width: 80%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Miehenä</h1>
+            <p class="tagline">"Puhutaan miehisyydestä niin kuin ihmisyydestä pitäisi."</p>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <div class="intro-text">
+                <p><strong>Miehenä-podcastissa</strong> puhutaan haavoittuvasti, rehellisesti ja nauraen itsellemme.</p>
+                <p>Juho ja Joel tuovat keskusteluun tutkimustietoa, tunnetta ja toivoa paremmasta mieskulttuurista. Tavoitteenamme ei ole osoitella sormella, vaan rakentaa siltoja.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Mitä me ajamme takaa?</h2>
+            
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <h3>1. Vapautetaan miehet rooleista</h3>
+                    <p>Näytetään, että miehet voivat puhua toisilleen myös lempeästi ja haavoittuvaisesti ilman pelkoa leimautumisesta.</p>
+                </div>
+                <div class="goal-card">
+                    <h3>2. Tunteet ja rajat tutuiksi</h3>
+                    <p>Autetaan miehiä sanoittamaan tunteitaan, rajojaan ja toiveitaan. Itsetuntemus on avain hyvinvointiin.</p>
+                </div>
+                <div class="goal-card">
+                    <h3>3. Tieto korvaa luulon</h3>
+                    <p>Tuodaan mieskeskusteluun tutkimustietoa ja uteliaisuutta. Korvataan uskomukset, pelko ja viha ymmärryksellä ja dialogilla.</p>
+                </div>
+                <div class="goal-card">
+                    <h3>4. Yhdenvertaisuus on voitto</h3>
+                    <p>Näytetään, että yhdenvertaisuus hyödyttää kaikkia. Se ei ole nollasummapeli, vaan tie parempaan ihmisyyteen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video">
+        <div class="container">
+            <h2 style="text-align: center;">Tutustu Juhoon ja Joeliin</h2>
+            <div class="video-wrapper">
+                <div class="video-placeholder-text">
+                    <p>[Youtube-video tähän]</p>
+                    <p>Placeholder: Esittelyvideo</p>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="listen">
+        <div class="container">
+            <h2 style="text-align: center;">Ota podcast kuunteluun</h2>
+            <div class="listen-links">
+                <a href="#" class="btn">Spotify</a>
+                <a href="#" class="btn">Apple Podcasts</a>
+                <a href="#" class="btn">Supla / Muu palvelu</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Miehenä-podcast. Kaikki oikeudet pidätetään.</p>
+            <p>Juho & Joel</p>
+        </div>
+    </footer>
+
+</body>
+</html>
