@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miehenä-podcast | Juho & Joel</title>
     <style>
-        /* --- PERUSASETUKSET & VÄRIT --- */
+   
         :root {
             --bg-dark-green: #0b3d2e;      /* Tumma metsänvihreä */
             --bg-card-green: #14523d;      /* Hieman vaaleampi vihreä laatikoihin */
@@ -33,7 +33,7 @@
             transition: 0.3s;
         }
 
-        /* --- LEISKAASETUKSET (LAYOUT) --- */
+        /* --- LAYOUT --- */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -42,8 +42,7 @@
 
         header {
             text-align: center;
-            padding: 60px 20px;
-            border-bottom: 1px solid rgba(255, 194, 209, 0.2);
+            padding: 40px 20px;
         }
 
         header h1 {
@@ -61,7 +60,7 @@
 
         /* --- OSIOT --- */
         section {
-            padding: 50px 0;
+            padding: 20px 0;
         }
 
         /* Esittely-osio */
@@ -72,7 +71,7 @@
             margin: 0 auto;
         }
 
-        /* Tavoitteet (Grid) */
+        /* Goals grid */
         .goals-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -95,8 +94,6 @@
         /* Video-placeholder */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 kuvasuhde */
-            height: 0;
             background-color: #000;
             border-radius: 12px;
             overflow: hidden;
@@ -104,18 +101,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            max-width: 600px;
+            max-height: 337px;
+            margin: 0 auto;
         }
 
-        .video-placeholder-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            text-align: center;
-        }
-
-        /* Kuuntelu-linkit (CTA) */
+        /* Links (CTA) */
         .listen-links {
             text-align: center;
             margin-top: 40px;
@@ -157,16 +148,23 @@
 
     <header>
         <div class="container">
-            <h1>Miehenä</h1>
-            <p class="tagline">"Puhutaan miehisyydestä niin kuin ihmisyydestä pitäisi."</p>
+            <h1>Miehenä-podcast</h1>
+            <p class="tagline">Puhutaan miehisyydestä niin kuin ihmisyydestä pitäisi.</p>
+        </div>
+        <div class="video-wrapper">
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=EmwiZ17G7T-Epuru&amp;list=PLsRNoUx8w3rPPvAvyw4Uj_XTU-1WqD8Et" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </header>
 
-    <section id="about">
+    <section id="listen">
         <div class="container">
-            <div class="intro-text">
-                <p><strong>Miehenä-podcastissa</strong> puhutaan haavoittuvasti, rehellisesti ja nauraen itsellemme.</p>
-                <p>Juho ja Joel tuovat keskusteluun tutkimustietoa, tunnetta ja toivoa paremmasta mieskulttuurista. Tavoitteenamme ei ole osoitella sormella, vaan rakentaa siltoja.</p>
+            <h2 style="text-align: center;">Ota podcast kuunteluun</h2>
+            <div class="listen-links">
+                <a href="#" class="btn">Spotify</a>
+                <a href="#" class="btn">Apple Podcasts</a>
+                <a href="#" class="btn">YouTube</a>
+                <a href="#" class="btn">TikTok</a>
+                <a href="#" class="btn">Instagram</a>
             </div>
         </div>
     </section>
@@ -177,7 +175,7 @@
             
             <div class="goals-grid">
                 <div class="goal-card">
-                    <h3>1. Vapautetaan miehet rooleista</h3>
+                    <h3>1. Pois mieslaatikosta</h3>
                     <p>Näytetään, että miehet voivat puhua toisilleen myös lempeästi ja haavoittuvaisesti ilman pelkoa leimautumisesta.</p>
                 </div>
                 <div class="goal-card">
@@ -196,32 +194,9 @@
         </div>
     </section>
 
-    <section id="video">
-        <div class="container">
-            <h2 style="text-align: center;">Tutustu Juhoon ja Joeliin</h2>
-            <div class="video-wrapper">
-                <div class="video-placeholder-text">
-                    <p>[Youtube-video tähän]</p>
-                    <p>Placeholder: Esittelyvideo</p>
-                </div>
-                </div>
-        </div>
-    </section>
-
-    <section id="listen">
-        <div class="container">
-            <h2 style="text-align: center;">Ota podcast kuunteluun</h2>
-            <div class="listen-links">
-                <a href="#" class="btn">Spotify</a>
-                <a href="#" class="btn">Apple Podcasts</a>
-                <a href="#" class="btn">Supla / Muu palvelu</a>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="container">
-            <p>&copy; 2024 Miehenä-podcast. Kaikki oikeudet pidätetään.</p>
+            <p>&copy; 2025 Miehenä-podcast. Kaikki oikeudet pidätetään.</p>
             <p>Juho & Joel</p>
         </div>
     </footer>
